@@ -4,52 +4,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Recharge Plans</h1>
+<div class="d-flex justify-content-between align-items-center my-4">
+<h1>All Plans</h1>
 
 @if (this.User.IsInRole("Admin"))
 {
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <a asp-action="Create" class="btn btn-primary">Add Plan</a>
+
+}
+</div>
     
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Validity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                Rs. @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Validity) days
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.RechargePlanId" class="btn btn-primary">Details</a> 
-                    @if (this.User.IsInRole("Admin"))
-                {
-                <a asp-action="Edit" asp-route-id="@item.RechargePlanId" class="btn btn-secondary">Edit</a>
-                <a asp-action="Delete" asp-route-id="@item.RechargePlanId" class="btn btn-danger">Delete</a>
-                        
-                    }
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+@Html.Partial("../Shared/_PlansContainer", @Model)
+
+

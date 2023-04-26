@@ -1,60 +1,48 @@
-﻿@model IEnumerable<mobile_recharger.Models.Category>
+﻿@using System.Globalization;
+@model IEnumerable<mobile_recharger.Models.Category>
 
 @{
     ViewData["Title"] = "Index";
+    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
 }
+
+<div class="d-flex justify-content-between align-items-center my-4">
+
 
 <h1>All Categories</h1>
 <br />
 @if (this.User.IsInRole("Admin")) {
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.data)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.call)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.sms)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.data)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.call)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.sms)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-primary">Details</a> 
-                    @if (this.User.IsInRole("Admin"))
-                    {
+</div>
 
-                        <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-secondary">Edit</a> 
-                        <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-danger">Delete</a>
-                    }
-            </td>
-        </tr>
+<div class="row">
+
+@foreach (var item in Model)
+{
+    <div class="card col-3 m-3 bg-light p-0">
+        <div class="card-body text-left">
+            <h4 class="card-title">@textInfo.ToTitleCase(@item.Name)</h4>
+
+            <div class="d-flex mb-3 mr-3">
+                @foreach (var benifit in @item.GetBenefits())
+                {
+                    <span class="badge rounded-0 text-dark bg-warning">@benifit</span>
+                }
+            </div>
+        </div>
+
+
+            <a class="btn btn-primary" asp-controller="Categories"
+           asp-action="Details" asp-route-id=@item.CategoryId>
+                Explore
+            </a>
+        </div>
 }
-    </tbody>
-</table>
+</div>
+
+
+
+                

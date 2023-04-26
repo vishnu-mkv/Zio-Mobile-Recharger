@@ -1,0 +1,41 @@
+﻿@model List<RechargePlan>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if(Model.Count == 0)
+{
+    <div class="alert alert-info">No plans available!</div>
+}
+
+<div class="row">
+    @foreach (var plan in Model)
+    {
+        <div class="card col-3 m-3 bg-secondary text-light">
+            <div class="card-body text-left">
+                <div class="d-flex mb-4">
+                    @foreach(var benifit in @plan.Category.GetBenefits())
+                    {
+                        <span class="badge rounded-0 text-dark bg-warning">@benifit</span>
+                    }
+                </div>
+                <h4 class="card-title">Rs. @plan.Price</h4>
+                <p>Validity - @plan.Validity days</p>
+
+
+                <a class="btn btn-primary" asp-controller="RechargePlans" 
+                asp-action="Details" asp-route-id=@plan.CategoryId>
+                    Explore</a>
+
+                <a class="btn btn-success" asp-controller="Recharges"
+               asp-action="Create" asp-route-id=@plan.CategoryId>
+                    Recharge Now
+                </a>
+            </div>
+        </div>
+
+    }
+</div>

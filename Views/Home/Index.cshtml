@@ -1,8 +1,21 @@
-﻿@{
+﻿@model List<Category>
+@using System.Globalization
+
+@{
     ViewData["Title"] = "Home Page";
+    TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="">
+    <h1 class="display-5 text-center">Recharge Today!</h1>
+
+    @foreach(var cat in Model)
+    {
+        <div class="my-4">
+        <h1><span class="badge bg-light text-dark">@textInfo.ToTitleCase(@cat.Name)</span></h1>
+
+            
+        @Html.Partial("../Shared/_PlansContainer", cat.RechargePlans)
+        </div>
+    }
 </div>

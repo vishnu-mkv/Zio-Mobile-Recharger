@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using mobile_recharger.Data;
 using mobile_recharger.Models;
 using System.Diagnostics;
 
@@ -6,16 +8,17 @@ namespace mobile_recharger.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var categories = _context.Categorys.Include(c => c.RechargePlans);
+            return View(categories.ToList());
         }
 
         public IActionResult Privacy()
