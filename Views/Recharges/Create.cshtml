@@ -1,0 +1,34 @@
+﻿@model mobile_recharger.Models.Recharge
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Recharge</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <h4>Plan - Rs. @ViewBag.RechargePlan.Price</h4>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="mobileNumber" class="control-label"></label>
+                <input asp-for="mobileNumber" class="form-control" />
+                <span asp-validation-for="mobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Recharge" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

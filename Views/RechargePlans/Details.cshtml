@@ -1,0 +1,36 @@
+﻿@model mobile_recharger.Models.RechargePlan
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>RechargePlan</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Validity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Validity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Recharges" asp-action="Create" asp-route-id="@Model?.RechargePlanId" class="btn btn-primary">Recharge</a> 
+    <a asp-action="Index">Back to List</a>
+</div>
