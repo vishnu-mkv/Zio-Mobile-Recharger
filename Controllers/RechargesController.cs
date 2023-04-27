@@ -32,11 +32,13 @@ namespace mobile_recharger.Controllers
 
             var user = await GetCurrentUser();
             var rechargeContext = _context.Recharges.Include(r => r.User)
-                .Include(r => r.RechargePlan);
+                .Include(r => r.RechargePlan).ThenInclude(p => p.Category);
 
             if(! await _userManager.IsInRoleAsync(user, "Admin")) {
                 var rechargeContextUser = _context.Recharges.Include(r => r.User)
-                .Include(r => r.RechargePlan).Where(r => r.User == user);
+                .Include(r => r.RechargePlan).ThenInclude(p => p.Category)
+                .Where(r => r.User == user);
+
                 return View(await rechargeContextUser.ToListAsync());
 
             }

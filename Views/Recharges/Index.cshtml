@@ -7,48 +7,9 @@
 <h1>Transactions</h1>
 <br />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.mobileNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RechargePlan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RechargedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ValidTill)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.mobileNumber)
-            </td>
-            <td>
-                Rs. @Html.DisplayFor(modelItem => item.RechargePlan.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RechargedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ValidTill)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.RechargeId" class="btn btn-primary">Details</a>
-                    @if (this.User.IsInRole("Admin"))
+@Html.Partial("../Shared/_TransactionContainer", @Model)
+                   @* @if (this.User.IsInRole("Admin"))
                     {
                     <a asp-action="Delete" asp-route-id="@item.RechargeId" class="btn btn-danger">Delete</a>
                         
-                    }
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    }*@
