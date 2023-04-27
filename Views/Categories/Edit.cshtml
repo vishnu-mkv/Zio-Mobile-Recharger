@@ -4,36 +4,50 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h4>Edit the Category</h4>
+<style>
+    .form-control {
+        -webkit-box-shadow: none !important;
+        outline: -webkit-focus-ring-color auto 0px !important;
+    }
 
-<h4>Category</h4>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row flex-column align-items-center">
+    <div class="col-md-4 bg-secondary rounded">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CategoryId" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+            <div class="form-group mt-2">
+                <label asp-for="Name" class="control-label text-white">Name</label>
+                <input asp-for="Name" class="form-control border-0 border-bottom mt-1" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="data" /> @Html.DisplayNameFor(model => model.data)
+            <div class="form-group form-check mt-2">
+                <label class="form-check-label text-white">
+                    <input class="form-check-input border-0 border-bottom mt-1" asp-for="data" /> @Html.DisplayNameFor(model => model.data)
                 </label>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="call" /> @Html.DisplayNameFor(model => model.call)
+            <div class="form-group form-check mt-2">
+                <label class="form-check-label text-white">
+                    <input class="form-check-input border-0 border-bottom mt-1" asp-for="call" /> @Html.DisplayNameFor(model => model.call)
                 </label>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="sms" /> @Html.DisplayNameFor(model => model.sms)
+            <div class="form-group form-check mt-2">
+                <label class="form-check-label text-white">
+                    <input class="form-check-input border-0 border-bottom mt-1" asp-for="sms" /> @Html.DisplayNameFor(model => model.sms)
                 </label>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-4 mb-4">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -41,7 +55,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="mt-2  btn-primary rounded text-white text-decoration-none mt-2 p-2 ">Back to List</a>
 </div>
 
 @section Scripts {
