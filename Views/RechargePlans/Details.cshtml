@@ -4,10 +4,8 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>RechargePlan</h4>
+    <h4>Detail of the RechargePlan</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -32,8 +30,8 @@
 </div>
 <div>
     
-    <a asp-controller="Recharges" asp-action="Create" asp-route-id="@Model?.RechargePlanId" class="btn btn-primary">Recharge</a> 
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Recharges" asp-action="Create" asp-route-id="@Model?.RechargePlanId" class="btn btn-primary mb-1">Recharge</a> 
+    <a asp-action="Index" class=" btn-primary rounded text-white text-decoration-none   p-2 ">Back to List</a>
 </div>
 <div>
     @if (this.User.IsInRole("Admin"))

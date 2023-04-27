@@ -4,31 +4,45 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<style>
+    .form-control {
+        -webkit-box-shadow: none !important;
+        outline: -webkit-focus-ring-color auto 0px !important;
+    }
 
-<h4>Recharge</h4>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+<h1>Recharge</h1>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <h4>Plan - Rs. @ViewBag.RechargePlan.Price</h4>
+<div class="row flex-column align-items-center">
+    <div class="col-md-4 bg-secondary rounded ">
+        <h4 class="text-white mt-2">Rs. @ViewBag.RechargePlan.Price plan</h4>
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="mobileNumber" class="control-label"></label>
-                <input asp-for="mobileNumber" class="form-control" />
+                <label asp-for="mobileNumber" class="control-label mb-2 fs-4 text-white">MobileNumber</label>
+                <input asp-for="mobileNumber" class="form-control border-0 border-bottom border-primary" />
                 <span asp-validation-for="mobileNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Recharge" class="btn btn-primary" />
+                <input type="submit" value="Recharge" class="btn btn-primary mt-4 mb-4 border-white" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+    <a asp-action="Index" class="mt-2  btn-primary rounded text-white text-decoration-none m-2 p-2 ">Back to List</a>
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
