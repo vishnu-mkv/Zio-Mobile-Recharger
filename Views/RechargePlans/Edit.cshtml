@@ -4,40 +4,54 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<style>
+    .form-control {
+        -webkit-box-shadow: none !important;
+        outline: -webkit-focus-ring-color auto 0px !important;
+    }
 
-<h4>RechargePlan</h4>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+
+<h4>Edit the RechargePlan</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row flex-column align-items-center">
+    <div class="col-md-4 bg-secondary rounded">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="RechargePlanId" />
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <input asp-for="Price" class="form-control border-0 mt-1" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="Validity" class="control-label"></label>
-                <input asp-for="Validity" class="form-control" />
+                <input asp-for="Validity" class="form-control border-0 mt-1" />
                 <span asp-validation-for="Validity" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <select asp-for="CategoryId" class="form-control border-0 mt-1" asp-items="ViewBag.CategoryId"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-4 mb-4">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <a asp-action="Index" class="mt-2  btn-primary rounded text-white text-decoration-none mt-2 p-2 ">Back to List</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
