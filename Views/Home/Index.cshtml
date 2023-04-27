@@ -10,13 +10,17 @@
 <div class="">
     <h1 class="display-5 text-center">Recharge Today!</h1>
 
-
+    @if (User.Identity.IsAuthenticated)
+    {
+        
         <div class="my-4">
             <h1><span class="badge bg-light text-dark">My Active Plans</span></h1>
 
 
             @Html.Partial("../Shared/_TransactionContainer", Model.Recharges)
         </div>
+    }
+
     
 
     @foreach(var cat in Model.Categories)

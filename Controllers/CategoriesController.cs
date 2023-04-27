@@ -61,7 +61,7 @@ namespace mobile_recharger.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
 
-        public async Task<IActionResult> Create([Bind("Id,Name,data,call,sms")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryId,Name,data,call,sms")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace mobile_recharger.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
 
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,data,call,sms")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,data,call,sms")] Category category)
         {
             if (id != category.CategoryId)
             {
